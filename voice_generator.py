@@ -91,9 +91,6 @@ def creat_WAV(inputText):
     with open(input_file,'w',encoding='shift_jis') as file:
         file.write(inputText)
 
-    #辞書のPath
-    x = './dic'
-
     tts = gTTS(text=inputText, lang='ja')
     tts.save('./output.mp3')
 
