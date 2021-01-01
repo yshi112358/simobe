@@ -4,6 +4,7 @@ import asyncio
 import os
 import subprocess
 import ffmpeg
+from gtts import gTTS
 from voice_generator import creat_WAV
 
 client = commands.Bot(command_prefix='.')
@@ -34,7 +35,6 @@ async def bye(ctx):
 
 @client.command()
 async def register(ctx, arg1, arg2):
-    #with open('C:/open_jtalk/bin/dic.txt', mode='a') as f:
     with open('./dic.txt', mode='a') as f:
         f.write('\n'+ arg1 + ',' + arg2)
         print('dic.txtに書き込み：''\n'+ arg1 + ',' + arg2)
@@ -64,7 +64,7 @@ async def on_message(message):
         if message.guild.voice_client:
             print('#message.content:'+ message.content)
             creat_WAV(message.content)
-            source = discord.FFmpegPCMAudio("output.wav")
+            source = discord.FFmpegPCMAudio("output.mp3")
             message.guild.voice_client.play(source)
         else:
             pass

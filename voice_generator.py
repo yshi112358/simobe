@@ -1,4 +1,5 @@
 import subprocess
+from gtts import gTTS
 import re
 
 # ************************************************
@@ -90,32 +91,13 @@ def creat_WAV(inputText):
     with open(input_file,'w',encoding='shift_jis') as file:
         file.write(inputText)
 
-    command = './open_jtalk -x {x} -m {m} -r {r} -ow {ow} {input_file}'
-
     #辞書のPath
     x = './dic'
 
-    #ボイスファイルのPath
-    #m = 'C:/open_jtalk/bin/nitech_jp_atr503_m001.htsvoice'
-    #m = 'C:/open_jtalk/bin/mei/mei_sad.htsvoice'
-    #m = 'C:/open_jtalk/bin/mei/mei_angry.htsvoice'
-    #m = 'C:/open_jtalk/bin/mei/mei_bashful.htsvoice'
-    m = './mei/mei_happy.htsvoice'
-    #m = 'C:/open_jtalk/bin/mei/mei_normal.htsvoice'
+    tts = gTTS(text=inputText, lang='ja')
+    tts.save('./output.mp3')
 
-    #発声のスピード
-    #r = '2.0'
-    r = '1.2'
-
-    #出力ファイル名　and　Path
-    ow = 'output.wav'
-
-    args= {'x':x, 'm':m, 'r':r, 'ow':ow, 'input_file':input_file}
-
-    cmd= command.format(**args)
-    print(cmd)
-
-    subprocess.run(cmd)
+    #subprocess.run(cmd)
     return True
 
 if __name__ == '__main__':
