@@ -52,8 +52,7 @@ def remove_log(text):
 
 def user_custam(text):
 
-    #f = open('C:/open_jtalk/bin/dic.txt', 'r')
-    f = open('./dic.txt', 'r')
+    f = open('C:/open_jtalk/bin/dic.txt', 'r')
     line = f.readline()
 
     while line:
@@ -90,17 +89,17 @@ def creat_WAV(inputText):
     with open(input_file,'w',encoding='shift_jis') as file:
         file.write(inputText)
 
-    command = './open_jtalk -x {x} -m {m} -r {r} -ow {ow} {input_file}'
+    command = 'C:/open_jtalk/bin/open_jtalk -x {x} -m {m} -r {r} -ow {ow} {input_file}'
 
     #辞書のPath
-    x = './dic'
+    x = 'C:/open_jtalk/bin/dic'
 
     #ボイスファイルのPath
     #m = 'C:/open_jtalk/bin/nitech_jp_atr503_m001.htsvoice'
     #m = 'C:/open_jtalk/bin/mei/mei_sad.htsvoice'
     #m = 'C:/open_jtalk/bin/mei/mei_angry.htsvoice'
     #m = 'C:/open_jtalk/bin/mei/mei_bashful.htsvoice'
-    m = './mei/mei_happy.htsvoice'
+    m = 'C:/open_jtalk/bin/mei/mei_happy.htsvoice'
     #m = 'C:/open_jtalk/bin/mei/mei_normal.htsvoice'
 
     #発声のスピード
