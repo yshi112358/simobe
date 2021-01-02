@@ -57,6 +57,7 @@ async def on_message(message):
     print('---on_message_start---')
     msgclient = message.guild.voice_client
     print(msgclient)
+    print(discord.opus.is_loaded())
     if message.content.startswith('.'):
         pass
 
@@ -65,7 +66,7 @@ async def on_message(message):
             print('#message.content:'+ message.content)
             creat_WAV(message.content)
             source = discord.FFmpegPCMAudio("./output.mp3")
-            message.guild.voice_client.play(source)
+            #message.guild.voice_client.play(source)
         else:
             pass
     await client.process_commands(message)
