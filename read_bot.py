@@ -6,7 +6,7 @@ import subprocess
 from gtts import gTTS
 from voice_generator import creat_WAV
 
-client = commands.Bot(command_prefix='..')
+client = commands.Bot(command_prefix='')
 voice_client = None
 
 
