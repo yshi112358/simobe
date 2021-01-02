@@ -3,11 +3,11 @@ from discord.ext import commands
 import asyncio
 import os
 import subprocess
-#import ffmpeg
 from gtts import gTTS
 from voice_generator import creat_WAV
+import discord_send_error
 
-client = commands.Bot(command_prefix='.')
+client = commands.Bot(command_prefix='?')
 voice_client = None
 
 
@@ -54,23 +54,26 @@ async def on_voice_state_update(member, before, after):
 
 @client.event
 async def on_message(message):
-    print('---on_message_start---')
-    msgclient = message.guild.voice_client
-    print(msgclient)
-    print(discord.opus.is_loaded())
-    if message.content.startswith('.'):
-        pass
-
-    else:
-        if message.guild.voice_client:
-            print('#message.content:'+ message.content)
-            creat_WAV(message.content)
-            source = discord.FFmpegOpusAudio("./output.mp3")
-            message.guild.voice_client.play(source)
-        else:
+    try:
+        print('---on_message_start---')
+        msgclient = message.guild.voice_client
+        print(msgclient)
+        print(discord.opus.is_loaded())
+        if message.content.startswith('?'):
             pass
-    await client.process_commands(message)
-    print('---on_message_end---')
 
+        else:
+            if message.guild.voice_client:
+                print('#message.content:'+ message.content)
+                creat_WAV(message.content)
+                source = discord.FFmpegOpusAudio("./output.mp3")
+                message.guild.voice_client.play(source)
+            else:
+                pass
+        await client.process_commands(message)
+        print('---on_message_end---')
+    except:
+        import traceback
+        discord_send_error.send_error_log(traceback.format_exc())
 
-client.run("Nzk0NTY1MTE3OTc4NDc2NTU0.X-8qbg.hoWlswUZztYE0pYM5e9clscITtQ")
+client.run("Nzk0OTQxMzU1MDc0NzgxMjU0.X_CI1A.4wTuK0UhfprkJKTJGNy_4Iuy4aY")
