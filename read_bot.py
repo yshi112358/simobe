@@ -3,11 +3,10 @@ from discord.ext import commands
 import asyncio
 import os
 import subprocess
-#import ffmpeg
 from gtts import gTTS
 from voice_generator import creat_WAV
 
-client = commands.Bot(command_prefix='.')
+client = commands.Bot(command_prefix='..')
 voice_client = None
 
 
@@ -72,5 +71,17 @@ async def on_message(message):
     await client.process_commands(message)
     print('---on_message_end---')
 
-
+@bot.event
+async def on_command_error(ctx, error):
+    ch = int型のチャンネルID
+    embed = discord.Embed(title="エラー情報", description="", color=0xf00)
+    embed.add_field(name="エラー発生サーバー名", value=ctx.guild.name, inline=False)
+    embed.add_field(name="エラー発生サーバーID", value=ctx.guild.id, inline=False)
+    embed.add_field(name="エラー発生ユーザー名", value=ctx.author.name, inline=False)
+    embed.add_field(name="エラー発生ユーザーID", value=ctx.author.id, inline=False)
+    embed.add_field(name="エラー発生コマンド", value=ctx.message.content, inline=False)
+    embed.add_field(name="発生エラー", value=error, inline=False)
+    m = await bot.get_channel(ch).send(embed=embed)
+    await ctx.send(f"何らかのエラーが発生しました。ごめんなさい。\nこのエラーについて問い合わせるときはこのコードも一緒にお知らせください：{m.id}")
+    
 client.run("Nzk0OTQxMzU1MDc0NzgxMjU0.X_CI1A.4wTuK0UhfprkJKTJGNy_4Iuy4aY")
