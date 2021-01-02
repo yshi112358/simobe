@@ -7,7 +7,7 @@ chardet==3.0.4
 click==7.1.2
 discord==1.0.1
 discord.py==1.5.1
-discord.py[voice]=1.5.1
+discord.py[voice]==1.5.1
 gTTS==2.2.1
 idna==2.10
 multidict==4.7.6
