@@ -57,7 +57,6 @@ async def on_voice_state_update(member, before, after):
 
 @client.event
 async def on_message(message):
-    if_error = False
     try:
         print('---on_message_start---')
         msgclient = message.guild.voice_client
@@ -77,8 +76,6 @@ async def on_message(message):
         await client.process_commands(message)
         print('---on_message_end---')
     except:
-        if_error = True
-    if if_error:
         import traceback
         discord_send_error.send_error_log(traceback.format_exc())
 
