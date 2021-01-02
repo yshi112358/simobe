@@ -3,7 +3,7 @@ from discord.ext import commands
 import asyncio
 import os
 import subprocess
-import ffmpeg
+#import ffmpeg
 from gtts import gTTS
 from voice_generator import creat_WAV
 
