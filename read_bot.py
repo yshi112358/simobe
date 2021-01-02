@@ -79,8 +79,8 @@ async def on_message(message):
     except:
         import traceback
         if_error = true
-    if if_error:
-        discord_send_error.send_error_log(traceback.format_exc())
+    #if if_error:
+        #discord_send_error.send_error_log(traceback.format_exc())
 
 client.run("Nzk0OTQxMzU1MDc0NzgxMjU0.X_CI1A.4wTuK0UhfprkJKTJGNy_4Iuy4aY")#dev
 #client.run("Nzk0NTY1MTE3OTc4NDc2NTU0.X-8qbg.hoWlswUZztYE0pYM5e9clscITtQ")#main
