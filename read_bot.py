@@ -7,12 +7,12 @@ from gtts import gTTS
 from voice_generator import creat_WAV
 import discord_send_error
 
-prefix = '?'
+#prefix = '?'
 #prefix = '.'
 client.run("Nzk0OTQxMzU1MDc0NzgxMjU0.X_CI1A.4wTuK0UhfprkJKTJGNy_4Iuy4aY")
 #client.run("Nzk0NTY1MTE3OTc4NDc2NTU0.X-8qbg.hoWlswUZztYE0pYM5e9clscITtQ")
 
-client = commands.Bot(command_prefix='?')
+client = commands.Bot(command_prefix = '?')
 voice_client = None
 
 
@@ -64,7 +64,7 @@ async def on_message(message):
         msgclient = message.guild.voice_client
         print(msgclient)
         print(discord.opus.is_loaded())
-        if message.content.startswith(prefix):
+        if message.content.startswith('?'):
             pass
 
         else:
