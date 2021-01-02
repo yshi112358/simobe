@@ -70,7 +70,7 @@ async def on_message(message):
             pass
     await client.process_commands(message)
     print('---on_message_end---')
-
+'''
 @bot.event
 async def on_command_error(ctx, error):
     ch = int型のチャンネルID
@@ -83,5 +83,6 @@ async def on_command_error(ctx, error):
     embed.add_field(name="発生エラー", value=error, inline=False)
     m = await bot.get_channel(ch).send(embed=embed)
     await ctx.send(f"何らかのエラーが発生しました。ごめんなさい。\nこのエラーについて問い合わせるときはこのコードも一緒にお知らせください：{m.id}")
-    
+'''
+
 client.run("Nzk0OTQxMzU1MDc0NzgxMjU0.X_CI1A.4wTuK0UhfprkJKTJGNy_4Iuy4aY")
