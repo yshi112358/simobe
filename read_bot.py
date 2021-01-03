@@ -11,6 +11,7 @@ prefix = '?'#dev
 #prefix = '.'#main
 
 client = commands.Bot(command_prefix = prefix)
+
 voice_client = None
 
 
