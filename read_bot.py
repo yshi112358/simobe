@@ -38,6 +38,7 @@ async def join(ctx):
 async def bye(ctx):
     print('#bye')
     print('#切断')
+    await ctx.channel.send('またね！')
     await ctx.voice_client.disconnect()
 
 @client.command()
@@ -45,7 +46,7 @@ async def register(ctx, arg1, arg2):
     with open('./dic.txt', mode='a',encoding='shift-jis') as f:
         f.write('\n'+ arg1 + ',' + arg2)
         print('dic.txtに書き込み：''\n'+ arg1 + ',' + arg2)
-    await ctx.send('`' + arg1+'` を `'+arg2+'` として登録しました')
+    await ctx.send('`' + arg1+'` を `'+arg2+'` として登録しました！')
 
 @client.event
 async def on_voice_state_update(member, before, after):
