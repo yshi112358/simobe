@@ -52,7 +52,7 @@ def remove_log(text):
 # ************************************************
 
 def user_custam(text):
-    f = open('./dic.txt', 'r')
+    f = open('./dic.txt', 'r', encoding='utf-8')
     line = f.readline()
 
     while line:
