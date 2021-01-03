@@ -86,8 +86,8 @@ def creat_WAV(inputText):
     #inputText = user_custam(inputText)   # ユーザ登録した文字を読み替える
     #input_file = 'input.txt'
 
-    with open(input_file,'w',encoding='shift_jis') as file:
-        file.write(inputText)
+    #with open(input_file,'w',encoding='shift_jis') as file:
+    #    file.write(inputText)
 
     tts = gTTS(text=inputText, lang='ja')
     tts.save('./output.mp3')
