@@ -52,8 +52,6 @@ def remove_log(text):
 # ************************************************
 
 def user_custam(text):
-
-    #f = open('C:/open_jtalk/bin/dic.txt', 'r')
     f = open('./dic.txt', 'r')
     line = f.readline()
 
@@ -86,7 +84,7 @@ def creat_WAV(inputText):
     inputText = remove_picture(inputText)   # 画像なら読み上げない
     inputText = remove_log(inputText)   # 参加ログなら読み上げない
     #inputText = user_custam(inputText)   # ユーザ登録した文字を読み替える
-    input_file = 'input.txt'
+    #input_file = 'input.txt'
 
     with open(input_file,'w',encoding='shift_jis') as file:
         file.write(inputText)
