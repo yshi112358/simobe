@@ -62,7 +62,7 @@ async def on_voice_state_update(member, before, after):
 async def on_message(message):
     if message.author.bot:
         return
-    with open('./text_channel.txt',mode='r') as f:
+    with open('./text_channel.txt',mode='r',encoding='utf-8') as f:
         text_channel = f.read()
     try:
         print('---on_message_start---')
