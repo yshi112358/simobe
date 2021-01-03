@@ -7,8 +7,8 @@ from gtts import gTTS
 from voice_generator import creat_WAV
 import discord_send_error
 
-prefix = '?'#dev
-#prefix = '.'#main
+#prefix = '?'#dev
+prefix = '.'#main
 
 client = commands.Bot(command_prefix = prefix)
 
@@ -80,5 +80,5 @@ async def on_message(message):
         import traceback
         discord_send_error.send_error_log(traceback.format_exc())
 
-client.run("Nzk0OTQxMzU1MDc0NzgxMjU0.X_CI1A.4wTuK0UhfprkJKTJGNy_4Iuy4aY")#dev
-#client.run("Nzk0NTY1MTE3OTc4NDc2NTU0.X-8qbg.hoWlswUZztYE0pYM5e9clscITtQ")#main
+#client.run("Nzk0OTQxMzU1MDc0NzgxMjU0.X_CI1A.4wTuK0UhfprkJKTJGNy_4Iuy4aY")#dev
+client.run("Nzk0NTY1MTE3OTc4NDc2NTU0.X-8qbg.hoWlswUZztYE0pYM5e9clscITtQ")#main
