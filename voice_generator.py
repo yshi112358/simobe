@@ -76,7 +76,7 @@ def user_custam(text):
 # 引数：inputText
 # 書き込みファイル：input.txt、output.wav
 # ************************************************
-def creat_WAV(inputText):
+def creat_MP3(inputText,file_name):
     inputText = remove_custom_emoji(inputText)   # 絵文字IDは読み上げない
     inputText = remove_command(inputText)   # コマンドは読み上げない
     inputText = url_shouryaku(inputText)   # URLなら省略
@@ -85,9 +85,6 @@ def creat_WAV(inputText):
     inputText = user_custam(inputText)   # ユーザ登録した文字を読み替える
 
     tts = gTTS(text=inputText, lang='ja')
-    tts.save('./output.mp3')
+    tts.save('./'+file_name)
 
     return True
-
-if __name__ == '__main__':
-    creat_WAV('テスト')

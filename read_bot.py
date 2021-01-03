@@ -4,8 +4,9 @@ import asyncio
 import os
 import subprocess
 from gtts import gTTS
-from voice_generator import creat_WAV
+from voice_generator import creat_MP3
 import discord_send_error
+import time
 
 prefix = '?'#dev
 #prefix = '.'#main
@@ -64,6 +65,7 @@ async def on_message(message):
         return
     with open('./text_channel.txt',mode='r',encoding='shift-jis') as f:
         text_channel = f.read()
+    print(message.author.display_name)
     try:
         print('---on_message_start---')
         msgclient = message.guild.voice_client
@@ -76,9 +78,13 @@ async def on_message(message):
         else:
             if str(message.channel) == text_channel:
                 if message.guild.voice_client:
+                    creat_MP3(message.author.display_name,'output_name.mp3')
+                    source = discord.FFmpegOpusAudio("./output_name.mp3")
+                    message.guild.voice_client.play(source)
+                    time.sleep(2)
                     print('#message.content:'+ message.content)
-                    creat_WAV(message.content)
-                    source = discord.FFmpegOpusAudio("./output.mp3")
+                    creat_MP3(message.content,'output_content.mp3')
+                    source = discord.FFmpegOpusAudio("./output_content.mp3")
                     message.guild.voice_client.play(source)
                 else:
                     pass
