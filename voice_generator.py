@@ -53,11 +53,8 @@ def remove_log(text):
 # ************************************************
 
 def user_custam(text):
-    f = open('./dic.txt', 'r', encoding='utf-8')
-    discord_send_error.send_error_log(f)
-    '''
+    f = open('./dic.txt', 'r',encoding='shift-jis')
     line = f.readline()
-
     while line:
         pattern = line.strip().split(',')
         if pattern[0] in text:
@@ -66,7 +63,7 @@ def user_custam(text):
             break
         else:
             line = f.readline()
-    '''
+
     f.close()
 
     return text
@@ -85,7 +82,7 @@ def creat_WAV(inputText):
     inputText = url_shouryaku(inputText)   # URLなら省略
     inputText = remove_picture(inputText)   # 画像なら読み上げない
     inputText = remove_log(inputText)   # 参加ログなら読み上げない
-    #inputText = user_custam(inputText)   # ユーザ登録した文字を読み替える
+    inputText = user_custam(inputText)   # ユーザ登録した文字を読み替える
 
     tts = gTTS(text=inputText, lang='ja')
     tts.save('./output.mp3')

@@ -41,7 +41,7 @@ async def bye(ctx):
 
 @client.command()
 async def register(ctx, arg1, arg2):
-    with open('./dic.txt', mode='a') as f:
+    with open('./dic.txt', mode='a',encoding='shift-jis') as f:
         f.write('\n'+ arg1 + ',' + arg2)
         print('dic.txtに書き込み：''\n'+ arg1 + ',' + arg2)
     await ctx.send('`' + arg1+'` を `'+arg2+'` として登録しました')
