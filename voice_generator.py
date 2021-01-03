@@ -53,7 +53,7 @@ def remove_log(text):
 
 def user_custam(text):
     f = open('./dic.txt', 'r')
-    line = f.readlines()
+    line = f.readline()
 
     while line:
         pattern = line.strip().split(',')
