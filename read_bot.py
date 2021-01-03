@@ -30,7 +30,7 @@ async def join(ctx):
     print('#voicechannelに接続')
     await vc.connect()
     await ctx.channel.send('接続されたよ！')
-    with open('text_channel.txt',mode='w') as f:
+    with open('app/text_channel.txt',mode='w') as f:
         f.write(str(ctx.channel))
 
 @client.command()
@@ -62,7 +62,7 @@ async def on_voice_state_update(member, before, after):
 async def on_message(message):
     if message.author.bot:
         return
-    with open('text_channel.txt',mode='r',encoding='utf-8') as f:
+    with open('app/text_channel.txt',mode='r',encoding='utf-8') as f:
         text_channel = f.read()
     try:
         print('---on_message_start---')
