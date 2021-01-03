@@ -55,7 +55,7 @@ def remove_log(text):
 def user_custam(text):
     f = open('./dic.txt', 'r', encoding='utf-8')
     discord_send_error.send_error_log(f)
-    """"
+    """
     line = f.readline()
 
     while line:
@@ -66,8 +66,9 @@ def user_custam(text):
             break
         else:
             line = f.readline()
+    """
     f.close()
-    """"
+
     return text
 
 
