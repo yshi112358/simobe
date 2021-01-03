@@ -20,6 +20,7 @@ async def on_ready():
     print(client.user.name)
     print(client.user.id)
     print('------')
+    print(os.path.abspath("text_channel.txt"))
 
 
 @client.command()
