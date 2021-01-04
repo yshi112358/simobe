@@ -41,7 +41,7 @@ async def bye(ctx):
     print('#切断')
     await ctx.channel.send('またね！')
     await ctx.voice_client.disconnect()
-    print(ctx)
+    print(ctx.channel)
 
 @client.command()
 async def register(ctx, arg1, arg2):
