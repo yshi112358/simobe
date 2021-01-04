@@ -7,9 +7,10 @@ from gtts import gTTS
 from voice_generator import creat_MP3
 import discord_send_error
 import time
+from mutagen.mp3 import MP3
 
-#prefix = '?'#dev
-prefix = '.'#main
+prefix = os.environ["prefix"]
+
 
 client = commands.Bot(command_prefix = prefix)
 
@@ -66,27 +67,18 @@ async def on_message(message):
         return
     with open('./text_channel.txt',mode='r',encoding='shift-jis') as f:
         text_channel = f.read()
-    print(message.author.display_name)
     try:
         print('---on_message_start---')
-        msgclient = message.guild.voice_client
-        print(msgclient)
-        print(discord.opus.is_loaded())
-        print(message.channel)
-
         if message.content.startswith(prefix):
             pass
         else:
             if str(message.channel) == text_channel:
                 if message.guild.voice_client:
-                    creat_MP3(message.author.display_name,'output_name.mp3')
-                    source = discord.FFmpegOpusAudio("./output_name.mp3")
-                    message.guild.voice_client.play(source)
-                    time.sleep(2)
-                    print('#message.content:'+ message.content)
-                    creat_MP3(message.content,'output_content.mp3')
-                    source = discord.FFmpegOpusAudio("./output_content.mp3")
-                    message.guild.voice_client.play(source)
+                    print("channel:"+str(message.channel))
+                    print("speaker:"+str(message.author.display_name))
+                    play_MP3(message,message.author.display_name,"output_name.mp3")
+                    print('content:'+ str(message.content))
+                    play_MP3(message,message.content,"output_content.mp3")
                 else:
                     pass
 
@@ -96,5 +88,10 @@ async def on_message(message):
         import traceback
         discord_send_error.send_error_log(traceback.format_exc())
 
-#client.run("Nzk0OTQxMzU1MDc0NzgxMjU0.X_CI1A.4wTuK0UhfprkJKTJGNy_4Iuy4aY")#dev
-client.run("Nzk0NTY1MTE3OTc4NDc2NTU0.X-8qbg.hoWlswUZztYE0pYM5e9clscITtQ")#main
+def play_MP3(message,inputText,file_name):
+    creat_MP3(inputText,file_name)
+    source = discord.FFmpegOpusAudio(file_name)
+    message.guild.voice_client.play(source)
+    time.sleep(MP3(file_name).info.length+0.5)
+
+client.run(os.environ["client"])
