@@ -34,8 +34,6 @@ async def join(ctx):
     print('#voicechannelに接続')
     await vc.connect()
     await ctx.channel.send('接続されたよ！')
-    print(ctx)
-    global ctx_channel = ctx
     with open('./text_channel.txt',mode='w',encoding="shift-jis") as f:
         f.write(str(ctx.channel))
 
