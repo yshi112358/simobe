@@ -11,6 +11,8 @@ import time
 prefix = '?'#dev
 #prefix = '.'#main
 
+print(os.environ["hoge"])
+
 client = commands.Bot(command_prefix = prefix)
 
 voice_client = None
