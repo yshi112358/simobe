@@ -30,7 +30,8 @@ async def join(ctx):
     print('#voicechannelを取得')
     vc = ctx.author.voice.channel
     print('#voicechannelに接続')
-    await vc.connect()
+    await vc.connect(a)
+    print(a)
     await ctx.channel.send('接続されたよ！')
     with open('./text_channel.txt',mode='w',encoding="shift-jis") as f:
         f.write(str(ctx.channel))
