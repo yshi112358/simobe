@@ -39,6 +39,7 @@ async def join(ctx):
 async def bye(ctx):
     print('#bye')
     print('#切断')
+    print(type(ctx))
     await ctx.channel.send('またね！')
     await ctx.voice_client.disconnect()
 
