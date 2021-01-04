@@ -16,6 +16,8 @@ client = commands.Bot(command_prefix = prefix)
 
 voice_client = None
 
+ctx_channel = 1
+
 @client.event
 async def on_ready():
     print('Logged in as')
