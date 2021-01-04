@@ -11,6 +11,7 @@ from mutagen.mp3 import MP3
 
 prefix = os.environ["prefix"]
 
+
 client = commands.Bot(command_prefix = prefix)
 
 voice_client = None
@@ -97,6 +98,5 @@ def play_MP3(message,inputText,file_name):
     source = discord.FFmpegOpusAudio(file_name)
     message.guild.voice_client.play(source)
     time.sleep(MP3(file_name).info.length+0.5)
-
 
 client.run(os.environ["client"])
