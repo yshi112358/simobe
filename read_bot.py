@@ -16,8 +16,6 @@ client = commands.Bot(command_prefix = prefix)
 
 voice_client = None
 
-ctx_channel = 1
-
 @client.event
 async def on_ready():
     print('Logged in as')
@@ -43,7 +41,6 @@ async def bye(ctx):
     print('#切断')
     await ctx.channel.send('またね！')
     await ctx.voice_client.disconnect()
-    print(ctx.channel)
 
 @client.command()
 async def register(ctx, arg1, arg2):
@@ -54,22 +51,10 @@ async def register(ctx, arg1, arg2):
 
 @client.event
 async def on_voice_state_update(member, before, after):
+    print(type(after))
     if after.channel is None:
-        print("taisyutu")
-        print(before.channel)
         #await member.channel.send('またね！')
         await before.voice_client.disconnect()
-"""
-    server_id_test = "サーバーID"
-    text_id_test = "通知させたいテキストチャンネルID"
-
-    if member.guild.id == server_id_test:   # サーバーid
-        text_ch = client.get_channel(text_id_test)   # 通知させたいTEXTチャンネルid
-        if before.channel is None:
-            msg = f'【VC参加ログ】{member.name} が {after.channel.name} に参加しました。'
-            await text_ch.send(msg)
-"""
-    
 
 @client.event
 async def on_message(message):
