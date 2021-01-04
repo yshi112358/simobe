@@ -52,7 +52,8 @@ async def register(ctx, arg1, arg2):
 @client.event
 async def on_voice_state_update(member, before, after):
     if after.channel is None:
-        await member.channel.send('またね！')
+        print("taisyutu")
+        #await member.channel.send('またね！')
         #await member.voice_client.disconnect()
 """
     server_id_test = "サーバーID"
