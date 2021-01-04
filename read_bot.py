@@ -56,7 +56,7 @@ async def on_voice_state_update(member, before, after):
         print("taisyutu")
         print(before.channel)
         #await member.channel.send('またね！')
-        #await member.voice_client.disconnect()
+        await before.voice_client.disconnect()
 """
     server_id_test = "サーバーID"
     text_id_test = "通知させたいテキストチャンネルID"
