@@ -50,15 +50,20 @@ async def register(ctx, arg1, arg2):
 
 @client.event
 async def on_voice_state_update(member, before, after):
+    if before.channel is None:
+        await member.channel.send('またね！')
+        await member.voice_client.disconnect()
+"""
     server_id_test = "サーバーID"
     text_id_test = "通知させたいテキストチャンネルID"
-
 
     if member.guild.id == server_id_test:   # サーバーid
         text_ch = client.get_channel(text_id_test)   # 通知させたいTEXTチャンネルid
         if before.channel is None:
             msg = f'【VC参加ログ】{member.name} が {after.channel.name} に参加しました。'
             await text_ch.send(msg)
+"""
+    
 
 @client.event
 async def on_message(message):
@@ -73,10 +78,10 @@ async def on_message(message):
         else:
             if str(message.channel) == text_channel:
                 if message.guild.voice_client:
-                    print("channel:"+str(message.channel))
-                    print("speaker:"+str(message.author.display_name))
+                    print("channel:" + str(message.channel))
+                    print("speaker:" + str(message.author.display_name))
                     play_MP3(message,message.author.display_name,"output_name.mp3")
-                    print('content:'+ str(message.content))
+                    print('content:' + str(message.content))
                     play_MP3(message,message.content,"output_content.mp3")
                 else:
                     pass
