@@ -54,7 +54,7 @@ async def register(ctx, arg1, arg2):
 async def on_voice_state_update(member, before, after):
     if after.channel is None:
         print("taisyutu")
-        print(member)
+        print(after.channel)
         #await member.channel.send('またね！')
         #await member.voice_client.disconnect()
 """
