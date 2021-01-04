@@ -46,6 +46,11 @@ async def register(ctx, arg1, arg2):
         print('dic.txtに書き込み：''\n'+ arg1 + ',' + arg2)
     await ctx.send('`' + arg1+'` を `'+arg2+'` として登録しました！')
 
+#辞書登録
+@client.command()
+async def register_export(ctx):
+    await ctx.channel.send(file=discord.File("dic.txt"))
+
 #自動退出
 @client.event
 async def on_voice_state_update(member, before, after):
