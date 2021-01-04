@@ -41,6 +41,7 @@ async def bye(ctx):
     print('#切断')
     await ctx.channel.send('またね！')
     await ctx.voice_client.disconnect()
+    print(ctx)
 
 @client.command()
 async def register(ctx, arg1, arg2):
@@ -53,6 +54,7 @@ async def register(ctx, arg1, arg2):
 async def on_voice_state_update(member, before, after):
     if after.channel is None:
         print("taisyutu")
+        print(member.channel)
         #await member.channel.send('またね！')
         #await member.voice_client.disconnect()
 """
