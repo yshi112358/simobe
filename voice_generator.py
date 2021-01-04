@@ -1,4 +1,3 @@
-import subprocess
 from gtts import gTTS
 import re
 import discord_send_error
