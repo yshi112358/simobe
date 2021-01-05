@@ -56,9 +56,10 @@ async def register_export(ctx):
 async def on_voice_state_update(member, before, after):
     if member.bot:
         return
-    if after.channel is None:
-        await ctx_join.channel.send('人がいなくなっちゃったから、ばいばい！')
-        await ctx_join.voice_client.disconnect()
+    if after.channel != ctx_join.voice_client.channel:
+        if before.channel == ctx_join.voice_client.channel:
+            await ctx_join.channel.send('人がいなくなっちゃったから、ばいばい！')
+            await ctx_join.voice_client.disconnect()
 
 #発声
 @client.event
