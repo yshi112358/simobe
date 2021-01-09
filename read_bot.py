@@ -13,6 +13,8 @@ prefix = os.environ["prefix"]
 
 client = commands.Bot(command_prefix = prefix)
 
+ctx_join=0
+
 #ログイン処理
 @client.event
 async def on_ready():
