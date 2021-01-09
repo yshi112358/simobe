@@ -13,6 +13,8 @@ prefix = os.environ["prefix"]
 
 client = commands.Bot(command_prefix = prefix)
 
+ctx_join = "null"
+
 #ログイン処理
 @client.event
 async def on_ready():
@@ -30,8 +32,6 @@ async def join(ctx):
     await vc.connect()
     await ctx.channel.send('接続されたよ！')
     ctx_join = ctx
-    #print(ctx.author.voice.channel.members)
-    #print(len([i.name for i in ctx.author.voice.channel.members]))
 
 #退室
 @client.command()
@@ -43,8 +43,10 @@ async def bye(ctx):
 #辞書登録
 @client.command()
 async def register(ctx, arg1, arg2):
-    with open('./dic.txt', mode='a',encoding='shift-jis') as f:
-        f.write('\n'+ arg1 + ',' + arg2)
+    with open('./dic.txt', mode='r',encoding='shift-jis') as f:
+        r = f.read()
+    with open('./dic.txt', mode='w',encoding='shift-jis') as f:
+        f.write(arg1 + ',' + arg2 + '\n' + r)
         print('dic.txtに書き込み：''\n'+ arg1 + ',' + arg2)
     await ctx.send('`' + arg1+'` を `'+arg2+'` として登録しました！')
 

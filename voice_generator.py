@@ -67,8 +67,6 @@ def user_custam(text):
 
     return text
 
-
-
 # ************************************************
 # creat_WAV
 # message.contentをテキストファイルと音声ファイルに書き込む
