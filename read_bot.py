@@ -13,7 +13,7 @@ prefix = os.environ["prefix"]
 
 client = commands.Bot(command_prefix = prefix)
 
-ctx_join=0
+ctx_join = "null"
 
 #ログイン処理
 @client.event
@@ -23,56 +23,34 @@ async def on_ready():
     print(client.user.id)
     print('------')
 
-#入室------------------------------------------------------------
+#入室
 @client.command()
 async def join(ctx):
-    join_raw(ctx)
-
-@client.command()
-async def j(ctx):
-    join_raw(ctx)
-
-async def join_raw(ctx):
     global ctx_join
     print('#join')
     vc = ctx.author.voice.channel
     await vc.connect()
     await ctx.channel.send('接続されたよ！')
     ctx_join = ctx
-#----------------------------------------------------------------
 
-#退室------------------------------------------------------------
+#退室
 @client.command()
 async def bye(ctx):
-    bye_raw(ctx)
-
-@client.command()
-async def b(ctx):
-    bye_raw(ctx)
-
-async def bye_raw(ctx):
     print('#bye')
     await ctx.channel.send('またね！')
     await ctx.voice_client.disconnect()
-#----------------------------------------------------------------
 
-#辞書登録---------------------------------------------------------
+#辞書登録
 @client.command()
 async def register(ctx, arg1, arg2):
-    register_raw(ctx,arg1,arg2)
-
-@client.command()
-async def r(ctx, arg1, arg2):
-    register_raw(ctx,arg1,arg2)
-
-async def register_raw(ctx, arg1, arg2):
-    with open('./dic.txt', mode='a',encoding='shift-jis') as f:
-        f.write('\n'+ arg1 + ',' + arg2)
+    with open('./dic.txt', mode='r',encoding='shift-jis') as f:
+        r = f.read()
+    with open('./dic.txt', mode='w',encoding='shift-jis') as f:
+        f.write(arg1 + ',' + arg2 + '\n' + r)
         print('dic.txtに書き込み：''\n'+ arg1 + ',' + arg2)
     await ctx.send('`' + arg1+'` を `'+arg2+'` として登録しました！')
-#----------------------------------------------------------------
 
-#辞書登録エクスポート
+#辞書登録
 @client.command()
 async def register_export(ctx):
     await ctx.channel.send(file=discord.File("dic.txt"))
