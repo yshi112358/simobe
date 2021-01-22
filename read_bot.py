@@ -13,7 +13,7 @@ prefix = os.environ["prefix"]
 
 client = commands.Bot(command_prefix = prefix)
 
-ctx_join = "null"
+ctx_join = None
 
 #ログイン処理
 @client.event
@@ -28,6 +28,7 @@ async def on_ready():
 async def join(ctx):
     global ctx_join
     print('#join')
+    print(type(ctx_join))
     vc = ctx.author.voice.channel
     await vc.connect()
     await ctx.channel.send('接続されたよ！')
@@ -58,6 +59,8 @@ async def register_export(ctx):
 #自動退出
 @client.event
 async def on_voice_state_update(member, before, after):
+    if ctx_join is None:
+        return
     if member.bot:
         return
     member_count = len([i.name for i in ctx_join.voice_client.channel.members])
@@ -75,6 +78,8 @@ async def on_message(message):
             return
         print('---on_message_start---')
         if message.content.startswith(prefix):
+            pass
+        elif ctx_join is None:
             pass
         elif message.channel == ctx_join.channel:
             if message.guild.voice_client:
