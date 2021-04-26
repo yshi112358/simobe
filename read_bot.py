@@ -121,6 +121,7 @@ def play_MP3(message, inputText, file_name):
 @client.command()
 async def a(ctx,arg,*member):
     print(arg)
+    print(member)
 
 
 client.run(os.environ["client"])
