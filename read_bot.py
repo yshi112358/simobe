@@ -118,35 +118,36 @@ async def a(ctx,arg,*member_count):
     global amongus_room
     global amongus_ghost
     global member_list
-    if arg =="set":
-        amongus_room = discord.utils.get(guild.voice_channels, name=member_count[0])
-        amongus_ghost = discord.utils.get(guild.voice_channels, name=member_count[1])
+    if 'arg' in locals():
+        if arg =="set":
+            amongus_room = discord.utils.get(guild.voice_channels, name=member_count[0])
+            amongus_ghost = discord.utils.get(guild.voice_channels, name=member_count[1])
 
-    elif arg == "start":
-        member_list=bot_vc.members
-        n=0
-        print(bot_vc)
-        for member in bot_vc.members:
-            await ctx.channel.send(str(member)+"  :"+str(n))
-            n+=1
-        
-    elif arg == "m" or arg == "mute":
-        for member in bot_vc.members:
-            await member.edit(mute=True)
+        elif arg == "start":
+            member_list=bot_vc.members
+            n=0
+            print(bot_vc)
+            for member in bot_vc.members:
+                await ctx.channel.send(str(member)+"  :"+str(n))
+                n+=1
+            
+        elif arg == "m" or arg == "mute":
+            for member in bot_vc.members:
+                await member.edit(mute=True)
 
-    elif arg == "d" or arg =="die" or arg == "unmute" or arg == "u":
-        for member in bot_vc.members:
-            await member.edit(mute=False)
-        n=0
-        for member in member_count:
-            await member_list[int(member)].move_to(amongus_ghost)
-            n+=1
+        elif arg == "d" or arg =="die" or arg == "unmute" or arg == "u":
+            for member in bot_vc.members:
+                await member.edit(mute=False)
+            n=0
+            for member in member_count:
+                await member_list[int(member)].move_to(amongus_ghost)
+                n+=1
 
-    elif arg == "end":
-        for member in bot_vc.members:
-            await member.edit(mute=False)
-        for member in member_list:
-            await member.move_to(amongus_room)
+        elif arg == "end":
+            for member in bot_vc.members:
+                await member.edit(mute=False)
+            for member in member_list:
+                await member.move_to(amongus_room)
     else:
         await ctx.channel.send("Among Usモードへようこそ！\n「"+prefix+"a」でいつでも操作方法を見ることができます。\n\n")
 
