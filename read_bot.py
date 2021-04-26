@@ -133,6 +133,7 @@ async def a(ctx,arg,*member_count):
         for member in bot_vc.members:
             await member.edit(mute=False)
         for member in member_count:
-            await ctx.guild.voice_client.move_to(client.get_channel(amongus_ghost))
+            print(client.get_channel(amongus_ghost))
+            //await ctx.guild.voice_client.move_to(client.get_channel(amongus_ghost))
 
 client.run(os.environ["client"])
