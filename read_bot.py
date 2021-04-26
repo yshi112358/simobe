@@ -147,7 +147,7 @@ async def a(ctx,arg,*member_count):
             await member.edit(mute=False)
         for member in member_list:
             await member.move_to(amongus_room)
-    elif
+    else:
         await ctx.channel.send("Among Usモードへようこそ！\n「"+prefix+"a」でいつでも操作方法を見ることができます。\n\n")
 
 client.run(os.environ["client"])
