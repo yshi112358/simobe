@@ -126,6 +126,7 @@ async def a(ctx,arg,*member_count):
     if arg =="set":
         amongus_room = member_count[0]
         amongus_ghost = member_count[1]
+        print(amongus_ghost)
     if arg == "m" or arg == "mute":
         for member in bot_vc.members:
             await member.edit(mute=True)
@@ -134,6 +135,6 @@ async def a(ctx,arg,*member_count):
             await member.edit(mute=False)
         for member in member_count:
             print(client.get_channel(amongus_ghost))
-            await ctx.author.move_to(client.get_channel(amongus_ghost),None)
+            await ctx.author.move_to(bot.client.get_channel(amongus_ghost))
 
 client.run(os.environ["client"])
