@@ -119,7 +119,7 @@ def play_MP3(message, inputText, file_name):
 
 #アモアス
 @client.command()
-async def a(ctx,*arg):
+async def a(ctx,arg,*member):
     print(arg)
 
 
