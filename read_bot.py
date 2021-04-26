@@ -125,6 +125,7 @@ async def a(ctx,arg,*member_count):
         for member in bot_vc.members:
             await member.edit(mute=True)
     elif arg == "d" or arg =="die" or arg == "unmute" or arg == "u":
+        await ctx.guild.voice_client.move_to(ctx.author.voice.channel)
         for member in bot_vc.members:
             await member.edit(mute=False)
         for member in member_count:
