@@ -117,8 +117,8 @@ amongus_ghost = 0
 async def a(ctx,arg,*member_count):
     bot_vc = ctx.guild.me.voice.channel # botのいるボイスチャンネルを取得
     if arg =="set":
-        amongus_room = discord.utils.get(guild.voice_channels, name=member_count[0])
-        amongus_ghost = discord.utils.get(guild.voice_channels, name=member_count[1])
+        amongus_room = discord.utils.get(channel.voice_channels, name=member_count[0])
+        amongus_ghost = discord.utils.get(channel.voice_channels, name=member_count[1])
         if member_count[0]=="room":
             amongus_room = ctx.author.voice.channel
         if member_count[0]=="ghost":
