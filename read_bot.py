@@ -127,7 +127,7 @@ async def a(ctx,arg,*member_count):
         n=0
         print(bot_vc)
         for member in bot_vc.members:
-            await ctx_join.channel.send(str(member)+":"+str(n)+"\n")
+            await ctx_join.channel.send(str(member)+":"+str(n))
 
     elif arg == "m" or arg == "mute":
         for member in bot_vc.members:
