@@ -109,8 +109,6 @@ async def on_message(message):
         discord_send_error.send_error_log(traceback.format_exc())
 
 # 発声モジュール
-
-
 def play_MP3(message, inputText, file_name):
     creat_MP3(inputText, file_name)
     source = discord.FFmpegOpusAudio(file_name)
@@ -135,6 +133,6 @@ async def a(ctx,arg,*member_count):
             await member.edit(mute=False)
         for member in member_count:
             print(client.get_channel(amongus_ghost))
-            await ctx.author.move_to(bot.client.get_channel(amongus_ghost))
+            await ctx.author.move_to(bot.get_channel(amongus_ghost))
 
 client.run(os.environ["client"])
