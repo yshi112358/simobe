@@ -12,6 +12,7 @@ import traceback
 prefix = os.environ["prefix"]
 
 client = commands.Bot(command_prefix=prefix)
+guild = client.get_guild(794600374911631381)
 
 ctx_join = None
 
