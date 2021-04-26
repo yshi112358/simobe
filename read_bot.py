@@ -125,6 +125,7 @@ async def a(ctx,arg,*member_count):
     if arg =="set":
         amongus_room = client.get_channel(member_count[0])
         amongus_ghost = client.get_channel(member_count[1])
+        print(member_count[1])
         print(amongus_ghost)
     if arg == "m" or arg == "mute":
         for member in bot_vc.members:
