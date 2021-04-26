@@ -117,23 +117,22 @@ async def a(ctx,arg,*member_count):
     bot_vc = ctx.guild.me.voice.channel # botのいるボイスチャンネルを取得
     global amongus_room
     global amongus_ghost
+    global member_list
     if arg =="set":
         amongus_room = discord.utils.get(guild.voice_channels, name=member_count[0])
         amongus_ghost = discord.utils.get(guild.voice_channels, name=member_count[1])
-        if member_count[0]=="room":
-            amongus_room = ctx.author.voice.channel
-        if member_count[0]=="ghost":
-            amongus_ghost = ctx.author.voice.channel
-        print(member_count[0])
-        print(amongus_room)
-    if arg == "m" or arg == "mute":
+    elif arg == "start":
+        member_list=[]
+        for member in bot_vc.members:
+            print(member.bot)
+            member_list += member
+    elif arg == "m" or arg == "mute":
         for member in bot_vc.members:
             await member.edit(mute=True)
     elif arg == "d" or arg =="die" or arg == "unmute" or arg == "u":
         for member in bot_vc.members:
             await member.edit(mute=False)
         for member in member_count:
-            print(amongus_ghost)
             await ctx.author.move_to(amongus_ghost)
 
 client.run(os.environ["client"])
