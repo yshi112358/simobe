@@ -139,7 +139,7 @@ async def a(ctx,arg,*member_count):
             await member.edit(mute=False)
         n=0
         for member in member_count:
-            await member_list[member].author.move_to(amongus_ghost)
+            await member_list[int(member)].author.move_to(amongus_ghost)
             n+=1
 
 client.run(os.environ["client"])
