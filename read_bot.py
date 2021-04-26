@@ -29,7 +29,8 @@ async def on_ready():
 @client.command()
 async def join(ctx):
     global ctx_join
-    global guild = ctx.guild
+    global guild
+    guild = ctx.guild
     print('#join')
     print(type(ctx_join))
     vc = ctx.author.voice.channel
