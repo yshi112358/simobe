@@ -129,7 +129,7 @@ async def a(ctx,arg,*member_count):
         if member_count[0]=="ghost":
             amongus_ghost = ctx.author.voice.channel
         print(member_count[0])
-        print(amongus_ghost)
+        print(amongus_room)
     if arg == "m" or arg == "mute":
         for member in bot_vc.members:
             await member.edit(mute=True)
