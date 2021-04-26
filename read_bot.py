@@ -137,7 +137,9 @@ async def a(ctx,arg,*member_count):
     elif arg == "d" or arg =="die" or arg == "unmute" or arg == "u":
         for member in bot_vc.members:
             await member.edit(mute=False)
+        n=0
         for member in member_count:
-            await member_list[member].author.move_to(amongus_ghost)
+            await member_list[member_count[n]].author.move_to(amongus_ghost)
+            n+=1
 
 client.run(os.environ["client"])
