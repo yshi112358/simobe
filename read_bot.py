@@ -118,10 +118,7 @@ async def a(ctx,arg,*member_count):
     global amongus_room
     global amongus_ghost
     global member_list
-    if arg == None:
-        await ctx.channel.send("Among Usモードへようこそ！\n「"+prefix+"a」でいつでも操作方法を見ることができます。\n")
-
-    elif arg =="set":
+    if arg =="set":
         amongus_room = discord.utils.get(guild.voice_channels, name=member_count[0])
         amongus_ghost = discord.utils.get(guild.voice_channels, name=member_count[1])
 
@@ -144,5 +141,8 @@ async def a(ctx,arg,*member_count):
         for member in member_count:
             await member_list[int(member)].move_to(amongus_ghost)
             n+=1
+            
+    elif:
+        await ctx.channel.send("Among Usモードへようこそ！\n「"+prefix+"a」でいつでも操作方法を見ることができます。\n\n")
 
 client.run(os.environ["client"])
