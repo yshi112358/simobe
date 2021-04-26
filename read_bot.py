@@ -115,11 +115,12 @@ def play_MP3(message, inputText, file_name):
     message.guild.voice_client.play(source)
     time.sleep(MP3(file_name).info.length+0.5)
 
+global amongus_room
+global amongus_ghost
+
 #アモアス
 @client.command()
 async def a(ctx,arg,*member_count):
-    global amongus_room
-    global amongus_ghost
     bot_vc = ctx.guild.me.voice.channel # botのいるボイスチャンネルを取得
     if arg =="set":
         amongus_room = client.get_channel(member_count[0])
