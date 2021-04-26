@@ -12,13 +12,11 @@ import traceback
 prefix = os.environ["prefix"]
 
 client = commands.Bot(command_prefix=prefix)
-guild = client.get_guild(794600374911631381)
 
 ctx_join = None
 
+
 # ログイン処理
-
-
 @client.event
 async def on_ready():
     print('Logged in as')
@@ -26,9 +24,8 @@ async def on_ready():
     print(client.user.id)
     print('------')
 
+
 # 入室
-
-
 @client.command()
 async def join(ctx):
     global ctx_join
@@ -39,18 +36,16 @@ async def join(ctx):
     await ctx.channel.send('接続されたよ！')
     ctx_join = ctx
 
+
 # 退室
-
-
 @client.command()
 async def bye(ctx):
     print('#bye')
     await ctx.channel.send('またね！')
     await ctx.voice_client.disconnect()
 
+
 # 辞書登録
-
-
 @client.command()
 async def register(ctx, arg1, arg2):
     with open('./dic.txt', mode='r', encoding='shift-jis') as f:
@@ -60,16 +55,14 @@ async def register(ctx, arg1, arg2):
         print('dic.txtに書き込み：''\n' + arg1 + ',' + arg2)
     await ctx.send('`' + arg1+'` を `'+arg2+'` として登録しました！')
 
+
 # 辞書登録
-
-
 @client.command()
 async def register_export(ctx):
     await ctx.channel.send(file=discord.File("dic.txt"))
 
+
 # 自動退出
-
-
 @client.event
 async def on_voice_state_update(member, before, after):
     if ctx_join is None:
@@ -83,9 +76,8 @@ async def on_voice_state_update(member, before, after):
                 await ctx_join.channel.send('人がいなくなっちゃったから、ばいばい！')
                 await ctx_join.voice_client.disconnect()
 
+
 # 発声
-
-
 @client.event
 async def on_message(message):
     try:
@@ -109,6 +101,7 @@ async def on_message(message):
     except:
         discord_send_error.send_error_log(traceback.format_exc())
 
+
 # 発声モジュール
 def play_MP3(message, inputText, file_name):
     creat_MP3(inputText, file_name)
@@ -124,6 +117,8 @@ amongus_ghost = 0
 async def a(ctx,arg,*member_count):
     bot_vc = ctx.guild.me.voice.channel # botのいるボイスチャンネルを取得
     if arg =="set":
+        amongus_room = discord.utils.get(guild.voice_channels, name=member_count[0])
+        amongus_ghost = discord.utils.get(guild.voice_channels, name=member_count[1])
         if member_count[0]=="room":
             amongus_room = ctx.author.voice.channel
         if member_count[0]=="ghost":
