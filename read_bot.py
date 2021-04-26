@@ -134,6 +134,6 @@ async def a(ctx,arg,*member_count):
             await member.edit(mute=False)
         for member in member_count:
             print(client.get_channel(amongus_ghost))
-            await ctx.author.move_to(client.get_channel(amongus_ghost))
+            await ctx.author.move_to(client.get_channel(amongus_ghost),None)
 
 client.run(os.environ["client"])
