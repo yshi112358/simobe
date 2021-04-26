@@ -123,11 +123,12 @@ async def a(ctx,arg,*member_count):
         amongus_ghost = discord.utils.get(guild.voice_channels, name=member_count[1])
 
     elif arg == "start":
-        member_list=bot_vc
+        member_list=bot_vc.members
         n=0
         print(bot_vc)
         for member in bot_vc.members:
             await ctx.channel.send(str(member)+":"+str(n))
+            n+=1
 
     elif arg == "m" or arg == "mute":
         for member in bot_vc.members:
@@ -137,6 +138,6 @@ async def a(ctx,arg,*member_count):
         for member in bot_vc.members:
             await member.edit(mute=False)
         for member in member_count:
-            await ctx.author.move_to(amongus_ghost)
+            await member_list[member].author.move_to(amongus_ghost)
 
 client.run(os.environ["client"])
