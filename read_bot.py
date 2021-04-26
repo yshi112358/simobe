@@ -121,7 +121,7 @@ def play_MP3(message, inputText, file_name):
 @client.command()
 async def a(ctx,arg,*member_count):
     if arg == "m" or arg == "mute":
-        bot_vc = message.guild.me.voice.channel # botのいるボイスチャンネルを取得
+        bot_vc = arg.guild.me.voice.channel # botのいるボイスチャンネルを取得
         for member in bot_vc.members:
             await member.edit(mute=True)
     elif arg == "d" or arg =="die" or arg=="unmute"or arg=="u":
