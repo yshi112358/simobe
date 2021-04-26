@@ -118,7 +118,7 @@ def play_MP3(message, inputText, file_name):
     time.sleep(MP3(file_name).info.length+0.5)
 
 #アモアス
-@client.command
+@client.command()
 async def a(ctx,*arg):
     print(arg)
 
