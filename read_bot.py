@@ -119,9 +119,13 @@ def play_MP3(message, inputText, file_name):
 
 #アモアス
 @client.command()
-async def a(ctx,arg,*member):
-    print(arg)
-    print(member)
-
+async def a(ctx,arg,*member_count):
+    if arg == "m" or arg == "mute":
+        bot_vc = message.guild.me.voice.channel # botのいるボイスチャンネルを取得
+        for member in bot_vc.members:
+            await member.edit(mute=True)
+    elif arg == "d" or arg =="die" or arg=="unmute"or arg=="u":
+        for member in member_count:
+            print(member)
 
 client.run(os.environ["client"])
