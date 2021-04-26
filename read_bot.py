@@ -118,8 +118,8 @@ async def a(ctx,arg,*member_count):
     global amongus_room
     global amongus_ghost
     global member_list
-    if arg == "":
-        await ctx.channel.send("Among Usモードへようこそ！\n")
+    if arg == None:
+        await ctx.channel.send("Among Usモードへようこそ！\n「"+prefix+"a」でいつでも操作方法を見ることができます。\n")
 
     elif arg =="set":
         amongus_room = discord.utils.get(guild.voice_channels, name=member_count[0])
