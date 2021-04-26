@@ -114,7 +114,7 @@ def play_MP3(message, inputText, file_name):
 #アモアス
 @client.command()
 async def a(ctx,arg,*member_count):
-    bot_vc = ctx.guild.me.voice.channel # botのいるボイスチャンネルを取得
+    bot_vc = ctx_join.guild.me.voice.channel # botのいるボイスチャンネルを取得
     global amongus_room
     global amongus_ghost
     global member_list
