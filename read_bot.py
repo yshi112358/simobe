@@ -134,6 +134,6 @@ async def a(ctx,arg,*member_count):
             await member.edit(mute=False)
         for member in member_count:
             print(amongus_ghost)
-            await ctx.guild.voice_client.move_to(amongus_ghost)
+            await ctx.author.move_to(amongus_ghost)
 
 client.run(os.environ["client"])
