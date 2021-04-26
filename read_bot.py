@@ -124,7 +124,8 @@ amongus_ghost=0
 async def a(ctx,arg,*member_count):
     bot_vc = ctx.guild.me.voice.channel # botのいるボイスチャンネルを取得
     if arg =="set":
-        print(member_count[0])
+        amongus_room=member_count[0]
+        amongus_ghost=member_count[1]
     if arg == "m" or arg == "mute":
         for member in bot_vc.members:
             await member.edit(mute=True)
@@ -133,6 +134,5 @@ async def a(ctx,arg,*member_count):
             await member.edit(mute=False)
         for member in member_count:
             await ctx.guild.voice_client.move_to(client.get_channel(amongus_ghost))
-            print(member)
 
 client.run(os.environ["client"])
