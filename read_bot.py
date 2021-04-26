@@ -118,6 +118,8 @@ async def a(ctx,arg,*member_count):
     global amongus_room
     global amongus_ghost
     global member_list
+    if arg == ""
+        await ctx.channel.send("a")
     if arg =="set":
         amongus_room = discord.utils.get(guild.voice_channels, name=member_count[0])
         amongus_ghost = discord.utils.get(guild.voice_channels, name=member_count[1])
@@ -127,9 +129,9 @@ async def a(ctx,arg,*member_count):
         n=0
         print(bot_vc)
         for member in bot_vc.members:
-            await ctx.channel.send(str(member)+":"+str(n))
+            await ctx.channel.send(str(member)+"  :"+str(n))
             n+=1
-
+        
     elif arg == "m" or arg == "mute":
         for member in bot_vc.members:
             await member.edit(mute=True)
