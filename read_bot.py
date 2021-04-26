@@ -126,8 +126,8 @@ async def a(ctx,arg,*member_count):
         member_list=bot_vc
         n=0
         print(bot_vc)
-        for member in amongus_room.members:
-            await amongus_room.channel.send(str(member)+":"+str(n))
+        for member in bot_vc.members:
+            await bot_vc.channel.send(str(member)+":"+str(n))
 
     elif arg == "m" or arg == "mute":
         for member in bot_vc.members:
