@@ -117,5 +117,10 @@ def play_MP3(message, inputText, file_name):
     message.guild.voice_client.play(source)
     time.sleep(MP3(file_name).info.length+0.5)
 
+#アモアス
+@client.event
+async def a(ctx,*arg):
+    print(arg)
+
 
 client.run(os.environ["client"])
