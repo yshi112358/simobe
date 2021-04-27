@@ -115,7 +115,7 @@ def play_MP3(message, inputText, file_name):
 
 
 @client.command()
-async def a(ctx, arg, *member_count):
+async def a(ctx, arg="", *member_count):
     bot_vc = ctx_join.guild.me.voice.channel  # botのいるボイスチャンネルを取得
 
     try:
