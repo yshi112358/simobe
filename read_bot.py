@@ -139,7 +139,7 @@ async def a(ctx, arg="", *member_count):
             n += 1
         embed = discord.Embed(title="ゲームスタート",description=bot_message)
         await ctx.channel.send(embed=embed)
-        mute(ctx,bot_vc,True)
+        await mute(ctx,bot_vc,True)
 
     elif arg == "m" or arg == "mute":
         mute(ctx,bot_vc,True)
