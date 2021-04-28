@@ -125,7 +125,7 @@ async def a(ctx, arg="", *member_count):
             guild.voice_channels, name=member_count[0])
         amongus_ghost = discord.utils.get(
             guild.voice_channels, name=member_count[1])
-        bot_message="メインチャンネルを"+member_count[0]+"、幽霊チャンネルを"+member_count[1]+"に設定しました。"
+        bot_message="メインチャンネルを`"+member_count[0]+"`、幽霊チャンネルを`"+member_count[1]+"`に設定しました。"
         embed = discord.Embed(title="初期設定",description=bot_message)
         await ctx.channel.send(embed=embed)
 
@@ -134,25 +134,25 @@ async def a(ctx, arg="", *member_count):
         member_list = bot_vc.members
         n = 0
         for member in bot_vc.members:
-            bot_message=str(member)+"  :"+str(n)+"\n"
+            bot_message+=str(member)+"  :"+str(n)+"\n"
             n += 1
         embed = discord.Embed(title="ゲームスタート",description=bot_message)
         await ctx.channel.send(embed=embed)
-        mute(True)
+        mute(bot_vc,True)
         
 
     elif arg == "m" or arg == "mute":
-        mute(True)
+        mute(bot_vc,True)
 
     elif arg == "d" or arg == "die" or arg == "unmute" or arg == "u":
-        mute(False)
+        mute(bot_vc,False)
         n = 0
         for member in member_count:
             await member_list[int(member)].move_to(amongus_ghost)
             n += 1
 
     elif arg == "end":
-        mute(False)
+        mute(bot_vc,False)
         for member in member_list:
             await member.move_to(amongus_room)
     else:
@@ -166,7 +166,7 @@ async def a(ctx, arg="", *member_count):
         embed=discord.Embed(title="各種コマンド説明",description=bot_message)
         await ctx.channel.send(embed=embed)
 
-async def mute(arg=False):
+async def mute(bot_vc,arg=False):
     for member in bot_vc.members:
         await member.edit(mute=arg)
     if arg:
