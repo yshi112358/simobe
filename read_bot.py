@@ -131,9 +131,12 @@ async def a(ctx, arg="", *member_count):
         member_list = bot_vc.members
         n = 0
         print(bot_vc)
+        bot_message=""
         for member in bot_vc.members:
-            await ctx.channel.send(str(member)+"  :"+str(n))
+            bot_message=str(member)+"  :"+str(n)+"\n"
             n += 1
+        embed = discord.Embed(title="ゲームスタート",description=bot_message)
+        await ctx.channel.send(embed)
 
     elif arg == "m" or arg == "mute":
         for member in bot_vc.members:
@@ -159,6 +162,6 @@ async def a(ctx, arg="", *member_count):
             +prefix+"a start`でゲームを開始します。\n`"
             +prefix+"a m`または`"+prefix+"a mute`で全員をサーバーミュートにします。\n`"\
             +prefix+"a d 人 人...`または`"+prefix+"a die 人 人...`で死んだ人を幽霊部屋に送り、ミュートを解除します。但し、人は番号で指定してください。\n`"\
-            +prefix+"a end`でゲームを終了し、全員をメインチャンネルに戻します。\n`")
+            +prefix+"a end`でゲームを終了し、全員をメインチャンネルに戻します。\n")
 
 client.run(os.environ["client"])
