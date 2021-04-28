@@ -133,6 +133,7 @@ async def a(ctx, arg="", *member_count):
         global member_list
         member_list = bot_vc.members
         n = 0
+        bot_message=""
         for member in bot_vc.members:
             bot_message+=str(member)+"  :"+str(n)+"\n"
             n += 1
