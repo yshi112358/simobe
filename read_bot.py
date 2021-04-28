@@ -166,7 +166,7 @@ async def a(ctx, arg="", *member_count):
         embed=discord.Embed(title="各種コマンド説明",description=bot_message)
         await ctx.channel.send(embed=embed)
 
-async def mute(arg=false):
+async def mute(arg=False):
     for member in bot_vc.members:
         await member.edit(mute=arg)
     if arg:
