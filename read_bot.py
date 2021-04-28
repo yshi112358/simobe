@@ -139,9 +139,7 @@ async def a(ctx, arg="", *member_count):
             n += 1
         embed = discord.Embed(title="ゲームスタート",description=bot_message)
         await ctx.channel.send(embed=embed)
-        loop = asyncio.get_event_loop()
-        loop.run_until_complete(mute(bot_vc,True))
-        
+        mute(bot_vc,True)
 
     elif arg == "m" or arg == "mute":
         mute(bot_vc,True)
@@ -168,14 +166,14 @@ async def a(ctx, arg="", *member_count):
         embed=discord.Embed(title="各種コマンド説明",description=bot_message)
         await ctx.channel.send(embed=embed)
 
-async def mute(bot_vc,arg=False):
+def mute(bot_vc,arg=False):
     for member in bot_vc.members:
-        await member.edit(mute=arg)
+        member.edit(mute=arg)
     if arg:
         bot_message="ミュートをオンにしました。"
     else:
         bot_message="ミュートをオフにしました。"
     embed = discord.Embed(title="ミュート",description=bot_message)
-    await ctx.channel.send(embed=embed)
+    ctx.channel.send(embed=embed)
 
 client.run(os.environ["client"])
