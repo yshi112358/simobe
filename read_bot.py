@@ -139,7 +139,8 @@ async def a(ctx, arg="", *member_count):
             n += 1
         embed = discord.Embed(title="ゲームスタート",description=bot_message)
         await ctx.channel.send(embed=embed)
-        asyncio.get_event_loop().run_until_complete(mute(bot_vc,True))
+        loop = asyncio.get_event_loop()
+        loop.run_until_complete(mute(bot_vc,True))
         
 
     elif arg == "m" or arg == "mute":
