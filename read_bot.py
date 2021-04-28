@@ -139,20 +139,20 @@ async def a(ctx, arg="", *member_count):
             n += 1
         embed = discord.Embed(title="ゲームスタート",description=bot_message)
         await ctx.channel.send(embed=embed)
-        mute(bot_vc,True)
+        mute(ctx,bot_vc,True)
 
     elif arg == "m" or arg == "mute":
-        mute(bot_vc,True)
+        mute(ctx,bot_vc,True)
 
     elif arg == "d" or arg == "die" or arg == "unmute" or arg == "u":
-        mute(bot_vc,False)
+        mute(ctx,bot_vc,False)
         n = 0
         for member in member_count:
             await member_list[int(member)].move_to(amongus_ghost)
             n += 1
 
     elif arg == "end":
-        mute(bot_vc,False)
+        mute(ctx,bot_vc,False)
         for member in member_list:
             await member.move_to(amongus_room)
     else:
@@ -166,7 +166,7 @@ async def a(ctx, arg="", *member_count):
         embed=discord.Embed(title="各種コマンド説明",description=bot_message)
         await ctx.channel.send(embed=embed)
 
-def mute(bot_vc,arg=False):
+def mute(ctx,bot_vc,arg=False):
     for member in bot_vc.members:
         member.edit(mute=arg)
     if arg:
