@@ -153,6 +153,12 @@ async def a(ctx, arg="", *member_count):
         for member in member_list:
             await member.move_to(amongus_room)
     else:
-        await ctx.channel.send("Among Usモードへようこそ！\n`"+prefix+"a`でいつでも操作方法を見ることができます。\n\n")
+        await ctx.channel.send("Among Usモードへようこそ！\n`"\
+            +prefix+"a`でいつでも操作方法を見ることができます。\n`"\
+            +prefix+"a set 部屋名 幽霊部屋名`で部屋の初期設定をします。\n`"\
+            +prefix+"a start`でゲームを開始します。\n`"
+            +prefix+"a m`または`"+prefix+"a mute`で全員をサーバーミュートにします。\n`"\
+            +prefix+"a d 人 人...`または`"+prefix+"a die 人 人...`で死んだ人を幽霊部屋に送り、ミュートを解除します。但し、人は番号で指定してください。\n`"\
+            +prefix+"a end`でゲームを終了し、全員をメインチャンネルに戻します。\n`")
 
 client.run(os.environ["client"])
