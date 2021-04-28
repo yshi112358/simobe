@@ -125,34 +125,34 @@ async def a(ctx, arg="", *member_count):
             guild.voice_channels, name=member_count[0])
         amongus_ghost = discord.utils.get(
             guild.voice_channels, name=member_count[1])
+        bot_message="メインチャンネルを"+member_count[0]+"、幽霊チャンネルを"+member_count[1]+"に設定しました。"
+        embed = discord.Embed(title="初期設定",description=bot_message)
+        await ctx.channel.send(embed=embed)
 
     elif arg == "start":
         global member_list
         member_list = bot_vc.members
         n = 0
-        print(bot_vc)
-        bot_message=""
         for member in bot_vc.members:
             bot_message=str(member)+"  :"+str(n)+"\n"
             n += 1
         embed = discord.Embed(title="ゲームスタート",description=bot_message)
         await ctx.channel.send(embed=embed)
+        mute(True)
+        
 
     elif arg == "m" or arg == "mute":
-        for member in bot_vc.members:
-            await member.edit(mute=True)
+        mute(True)
 
     elif arg == "d" or arg == "die" or arg == "unmute" or arg == "u":
-        for member in bot_vc.members:
-            await member.edit(mute=False)
+        mute(False)
         n = 0
         for member in member_count:
             await member_list[int(member)].move_to(amongus_ghost)
             n += 1
 
     elif arg == "end":
-        for member in bot_vc.members:
-            await member.edit(mute=False)
+        mute(False)
         for member in member_list:
             await member.move_to(amongus_room)
     else:
@@ -165,5 +165,15 @@ async def a(ctx, arg="", *member_count):
             +prefix+"a end`でゲームを終了し、全員をメインチャンネルに戻します。\n"
         embed=discord.Embed(title="各種コマンド説明",description=bot_message)
         await ctx.channel.send(embed=embed)
+
+async def mute(arg=false):
+    for member in bot_vc.members:
+        await member.edit(mute=arg)
+    if arg:
+        bot_message="ミュートをオンにしました。"
+    else:
+        bot_message="ミュートをオフにしました。"
+    embed = discord.Embed(title="ミュート",description=bot_message)
+    await ctx.channel.send(embed=embed)
 
 client.run(os.environ["client"])
