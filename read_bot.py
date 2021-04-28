@@ -139,7 +139,7 @@ async def a(ctx, arg="", *member_count):
             n += 1
         embed = discord.Embed(title="ゲームスタート",description=bot_message)
         await ctx.channel.send(embed=embed)
-        mute(bot_vc,True)
+        await mute(bot_vc,True)
         
 
     elif arg == "m" or arg == "mute":
@@ -169,12 +169,12 @@ async def a(ctx, arg="", *member_count):
 
 async def mute(bot_vc,arg=False):
     for member in bot_vc.members:
-        await member.edit(mute=arg)
+        member.edit(mute=arg)
     if arg:
         bot_message="ミュートをオンにしました。"
     else:
         bot_message="ミュートをオフにしました。"
     embed = discord.Embed(title="ミュート",description=bot_message)
-    await ctx.channel.send(embed=embed)
+    ctx.channel.send(embed=embed)
 
 client.run(os.environ["client"])
