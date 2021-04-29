@@ -111,9 +111,8 @@ def play_MP3(message, inputText, file_name):
     message.guild.voice_client.play(source)
     time.sleep(MP3(file_name).info.length+0.5)
 
+
 # アモアス
-
-
 @client.command()
 async def a(ctx, arg="", *member_count):
     bot_vc = ctx_join.guild.me.voice.channel  # botのいるボイスチャンネルを取得
@@ -125,42 +124,43 @@ async def a(ctx, arg="", *member_count):
             guild.voice_channels, name=member_count[0])
         amongus_ghost = discord.utils.get(
             guild.voice_channels, name=member_count[1])
-        bot_message="メインチャンネルを`"+member_count[0]+"`、幽霊チャンネルを`"+member_count[1]+"`に設定しました。"
-        embed = discord.Embed(title="初期設定",description=bot_message)
+        bot_message = "メインチャンネルを`" + \
+            member_count[0]+"`、幽霊チャンネルを`"+member_count[1]+"`に設定しました。"
+        embed = discord.Embed(title="初期設定", description=bot_message)
         await ctx.channel.send(embed=embed)
 
     elif arg == "start":
         global member_list
         member_list = bot_vc.members
         n = 0
-        bot_message=""
+        bot_message = ""
         for member in bot_vc.members:
-            bot_message+=str(member)+"  :"+str(n)+"\n"
+            bot_message += str(member)+"  :"+str(n)+"\n"
             n += 1
-        embed = discord.Embed(title="ゲームスタート",description=bot_message)
+        embed = discord.Embed(title="ゲームスタート", description=bot_message)
         await ctx.channel.send(embed=embed)
 
-        #ミュート処理
+        # ミュート処理
         for member in bot_vc.members:
             await member.edit(mute=True)
-        bot_message="ミュートをオンにしました。"
-        embed = discord.Embed(title="ミュート",description=bot_message)
+        bot_message = "ミュートをオンにしました。"
+        embed = discord.Embed(title="ミュート", description=bot_message)
         await ctx.channel.send(embed=embed)
 
     elif arg == "m" or arg == "mute":
-        #ミュート処理
+        # ミュート処理
         for member in bot_vc.members:
             await member.edit(mute=True)
-        bot_message="ミュートをオンにしました。"
-        embed = discord.Embed(title="ミュート",description=bot_message)
+        bot_message = "ミュートをオンにしました。"
+        embed = discord.Embed(title="ミュート", description=bot_message)
         await ctx.channel.send(embed=embed)
 
     elif arg == "d" or arg == "die" or arg == "unmute" or arg == "u":
-        #ミュート処理
+        # ミュート処理
         for member in bot_vc.members:
             await member.edit(mute=False)
-        bot_message="ミュートをオフにしました。"
-        embed = discord.Embed(title="ミュート",description=bot_message)
+        bot_message = "ミュートをオフにしました。"
+        embed = discord.Embed(title="ミュート", description=bot_message)
         await ctx.channel.send(embed=embed)
 
         n = 0
@@ -169,27 +169,27 @@ async def a(ctx, arg="", *member_count):
             n += 1
 
     elif arg == "end":
-        #ミュート処理
+        # ミュート処理
         for member in bot_vc.members:
             await member.edit(mute=False)
-        bot_message="ミュートをオフにしました。"
-        embed = discord.Embed(title="ミュート",description=bot_message)
+        bot_message = "ミュートをオフにしました。"
+        embed = discord.Embed(title="ミュート", description=bot_message)
         await ctx.channel.send(embed=embed)
 
         for member in member_list:
             await member.move_to(amongus_room)
 
     else:
-        bot_message="Among Usモードへようこそ！\n`"\
-            +prefix+"a`でいつでも操作方法を見ることができます。\n`"\
-            +prefix+"a set 部屋名 幽霊部屋名`で部屋の初期設定をします。\n`"\
-            +prefix+"a start`でゲームを開始します。\n`"\
-            +prefix+"a m`または`"+prefix+"a mute`で全員をサーバーミュートにします。\n`"\
-            +prefix+"a d 人 人...`または`"+prefix+"a die 人 人...`で死んだ人を幽霊部屋に送り、ミュートを解除します。但し、人は番号で指定してください。\n`"\
-            +prefix+"a end`でゲームを終了し、全員をメインチャンネルに戻します。\n"
-        embed=discord.Embed(title="各種コマンド説明",description=bot_message)
+        bot_message = "Among Usモードへようこそ！\n`"\
+            + prefix+"a`でいつでも操作方法を見ることができます。\n`"\
+            + prefix+"a set 部屋名 幽霊部屋名`で部屋の初期設定をします。\n`"\
+            + prefix+"a start`でゲームを開始します。\n`"\
+            + prefix+"a m`または`"+prefix+"a mute`で全員をサーバーミュートにします。\n`"\
+            + prefix+"a d 人 人...`または`"+prefix+"a die 人 人...`で死んだ人を幽霊部屋に送り、ミュートを解除します。但し、人は番号で指定してください。\n`"\
+            + prefix+"a end`でゲームを終了し、全員をメインチャンネルに戻します。\n"
+        embed = discord.Embed(title="各種コマンド説明", description=bot_message)
         await ctx.channel.send(embed=embed)
-        
+
 '''
 async def mute(ctx,bot_vc,arg=False):
     for member in bot_vc.members:
