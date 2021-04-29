@@ -139,22 +139,46 @@ async def a(ctx, arg="", *member_count):
             n += 1
         embed = discord.Embed(title="ゲームスタート",description=bot_message)
         await ctx.channel.send(embed=embed)
-        asyncio.run(mute(ctx,bot_vc,True))
+
+        #ミュート処理
+        for member in bot_vc.members:
+            await member.edit(mute=True)
+        bot_message="ミュートをオンにしました。"
+        embed = discord.Embed(title="ミュート",description=bot_message)
+        await ctx.channel.send(embed=embed)
 
     elif arg == "m" or arg == "mute":
-        mute(ctx,bot_vc,True)
+        #ミュート処理
+        for member in bot_vc.members:
+            await member.edit(mute=True)
+        bot_message="ミュートをオンにしました。"
+        embed = discord.Embed(title="ミュート",description=bot_message)
+        await ctx.channel.send(embed=embed)
 
     elif arg == "d" or arg == "die" or arg == "unmute" or arg == "u":
-        mute(ctx,bot_vc,False)
+        #ミュート処理
+        for member in bot_vc.members:
+            await member.edit(mute=False)
+        bot_message="ミュートをオフにしました。"
+        embed = discord.Embed(title="ミュート",description=bot_message)
+        await ctx.channel.send(embed=embed)
+
         n = 0
         for member in member_count:
             await member_list[int(member)].move_to(amongus_ghost)
             n += 1
 
     elif arg == "end":
-        mute(ctx,bot_vc,False)
+        #ミュート処理
+        for member in bot_vc.members:
+            await member.edit(mute=False)
+        bot_message="ミュートをオフにしました。"
+        embed = discord.Embed(title="ミュート",description=bot_message)
+        await ctx.channel.send(embed=embed)
+
         for member in member_list:
             await member.move_to(amongus_room)
+
     else:
         bot_message="Among Usモードへようこそ！\n`"\
             +prefix+"a`でいつでも操作方法を見ることができます。\n`"\
@@ -165,7 +189,8 @@ async def a(ctx, arg="", *member_count):
             +prefix+"a end`でゲームを終了し、全員をメインチャンネルに戻します。\n"
         embed=discord.Embed(title="各種コマンド説明",description=bot_message)
         await ctx.channel.send(embed=embed)
-
+        
+'''
 async def mute(ctx,bot_vc,arg=False):
     for member in bot_vc.members:
         await member.edit(mute=arg)
@@ -175,5 +200,6 @@ async def mute(ctx,bot_vc,arg=False):
         bot_message="ミュートをオフにしました。"
     embed = discord.Embed(title="ミュート",description=bot_message)
     await ctx.channel.send(embed=embed)
+'''
 
 client.run(os.environ["client"])
