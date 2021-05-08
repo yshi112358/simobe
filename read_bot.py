@@ -142,13 +142,6 @@ async def a(ctx, arg="", *member_count):
         embed = discord.Embed(title="ゲームスタート", description=bot_message)
         await ctx.channel.send(embed=embed)
 
-        # ミュート処理
-        for member in bot_vc.members:
-            await member.edit(mute=True)
-        bot_message = "ミュートをオンにしました。"
-        embed = discord.Embed(title="ミュート", description=bot_message)
-        await ctx.channel.send(embed=embed)
-
     elif arg == "m" or arg == "mute":
         # ミュート処理
         for member in bot_vc.members:
