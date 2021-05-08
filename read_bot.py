@@ -159,7 +159,8 @@ async def a(ctx, arg="", *member_count):
         await ctx.channel.send(embed=embed)
 
         for member in member_count:
-            await member_list[int(member)].move_to(amongus_ghost)
+            #await member_list[int(member)].move_to(amongus_ghost)
+            await member_list[int(member)].edit(mute=True)
             death_list+=int(member)
 
         #生き残り
