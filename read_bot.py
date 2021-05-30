@@ -240,3 +240,6 @@ async def mute(ctx,bot_vc,arg=False):
 '''
 
 client.run(os.environ["client"])
+
+
+print("I am Hotari")
