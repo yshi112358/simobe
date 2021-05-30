@@ -117,19 +117,7 @@ def play_MP3(message, inputText, file_name):
 async def a(ctx, arg="", *member_count):
     bot_vc = ctx_join.guild.me.voice.channel  # botのいるボイスチャンネルを取得
 
-    if arg == "set":
-        global amongus_room
-        global amongus_ghost
-        amongus_room = discord.utils.get(
-            guild.voice_channels, name=member_count[0])
-        amongus_ghost = discord.utils.get(
-            guild.voice_channels, name=member_count[1])
-        bot_message = "メインチャンネルを`" + \
-            member_count[0]+"`、幽霊チャンネルを`"+member_count[1]+"`に設定しました。"
-        embed = discord.Embed(title="初期設定", description=bot_message)
-        await ctx.channel.send(embed=embed)
-
-    elif arg == "start":
+    if arg == "start":
         global member_list
         global death_list
         member_list = bot_vc.members
@@ -138,75 +126,96 @@ async def a(ctx, arg="", *member_count):
         for member in bot_vc.members:
             bot_message += str(member)+"  :"+str(n)+"\n"
             n += 1
-        death_list=[False]*n
+        death_list=[]
+        death_list_num=[False]*n
         embed = discord.Embed(title="ゲームスタート", description=bot_message)
         await ctx.channel.send(embed=embed)
 
+
+
     elif arg == "m" or arg == "mute":
-        # ミュート処理
+        # ミュート処理(オフからオン)
         for member in bot_vc.members:
             await member.edit(mute=True)
+            await member.edit(deafen=True)
+        for member in death_list:
+            await member.edit(mute=False)
+            await member.edit(deafen=False)
+
         bot_message = "ミュートをオンにしました。"
         embed = discord.Embed(title="ミュート", description=bot_message)
         await ctx.channel.send(embed=embed)
 
+
+
     elif arg == "d" or arg == "die" or arg == "unmute" or arg == "u":
-        # ミュート処理
+        for member in member_count:
+            death_list+=member
+            death_list_num+=int(member)
+
+        # ミュート処理(オンからオフ)
         for member in bot_vc.members:
             await member.edit(mute=False)
-            await member.edit(deafen=True)
+            await member.edit(deafen=False)
+        for member in death_list:
+            await member.edit(mute=True)
+
         bot_message = "ミュートをオフにしました。"
         embed = discord.Embed(title="ミュート", description=bot_message)
         await ctx.channel.send(embed=embed)
-
-        for member in member_count:
-            #await member_list[int(member)].move_to(amongus_ghost)
-            await member_list[int(member)].edit(mute=True)
-            death_list+=int(member)
 
         #生き残り
         n = 0
         bot_message = ""
         for member in member_list:
-            if death_list[n] == False:
+            if death_list_num[n] == False:
                 bot_message += str(member)+"  :"+str(n)+"\n"
             n += 1
         embed = discord.Embed(title="生き残り", description=bot_message)
         await ctx.channel.send(embed=embed)        
         
+
+
     elif arg == "ban":
         for member in member_count:
-            await member_list[int(member)].move_to(amongus_ghost)
-            death_list+=int(member)
+            death_list+=member
+            death_list_num+=int(member)
         
         #生き残り
         n = 0
         bot_message = ""
         for member in member_list:
-            if death_list[n] == False:
+            if death_list_num[n] == False:
                 bot_message += str(member)+"  :"+str(n)+"\n"
             n += 1
         embed = discord.Embed(title="生き残り", description=bot_message)
         await ctx.channel.send(embed=embed)
 
-        # ミュート処理
+        # ミュート処理(オフからオン)
         for member in bot_vc.members:
             await member.edit(mute=True)
+            await member.edit(deafen=True)
+        for member in death_list:
+            await member.edit(mute=False)
+            await member.edit(deafen=False)
+
         bot_message = "ミュートをオンにしました。"
         embed = discord.Embed(title="ミュート", description=bot_message)
         await ctx.channel.send(embed=embed)
         
 
+
     elif arg == "end":
         # ミュート処理
         for member in bot_vc.members:
             await member.edit(mute=False)
+            await member.edit(deafen=False)
+
         bot_message = "ミュートをオフにしました。"
         embed = discord.Embed(title="ミュート", description=bot_message)
         await ctx.channel.send(embed=embed)
 
-        for member in member_list:
-            await member.move_to(amongus_room)
+
 
     else:
         bot_message = "Among Usモードへようこそ！\n`"\
