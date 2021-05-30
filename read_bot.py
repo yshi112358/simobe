@@ -154,7 +154,7 @@ async def a(ctx, arg="", *member_count):
         # ミュート処理
         for member in bot_vc.members:
             await member.edit(mute=False)
-            await member.edit(deaf=True)
+            await member.edit(deafen=True)
         bot_message = "ミュートをオフにしました。"
         embed = discord.Embed(title="ミュート", description=bot_message)
         await ctx.channel.send(embed=embed)
