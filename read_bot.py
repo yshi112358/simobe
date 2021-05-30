@@ -15,6 +15,8 @@ client = commands.Bot(command_prefix=prefix)
 
 ctx_join = None
 
+print
+
 
 # ログイン処理
 @client.event
@@ -240,3 +242,7 @@ async def mute(ctx,bot_vc,arg=False):
 '''
 
 client.run(os.environ["client"])
+
+class shimobe:
+    def __init__(self) -> None:
+        pass
