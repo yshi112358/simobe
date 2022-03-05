@@ -91,7 +91,7 @@ async def on_message(message):
         elif ctx_join is None:
             pass
         elif message.channel == ctx_join.channel:
-            if message.guild.voice_client:
+            if message.guild.voice_client && not message.content:
                 print("channel:" + str(message.channel))
                 print("speaker:" + str(message.author.display_name))
                 play_MP3(message, message.author.display_name,
