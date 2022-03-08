@@ -91,7 +91,7 @@ async def on_message(message):
         elif ctx_join is None:
             pass
         elif message.channel == ctx_join.channel:
-            if message.guild.voice_client && not message.content:
+            if message.guild.voice_client:
                 print("channel:" + str(message.channel))
                 print("speaker:" + str(message.author.display_name))
                 play_MP3(message, message.author.display_name,
@@ -106,6 +106,8 @@ async def on_message(message):
 
 # 発声モジュール
 def play_MP3(message, inputText, file_name):
+    if not inputText:
+        return
     creat_MP3(inputText, file_name)
     source = discord.FFmpegOpusAudio(file_name)
     message.guild.voice_client.play(source)
