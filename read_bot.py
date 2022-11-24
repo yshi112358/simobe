@@ -106,6 +106,8 @@ async def on_message(message):
 
 # 発声モジュール
 def play_MP3(message, inputText, file_name):
+    if not inputText:
+        return
     creat_MP3(inputText, file_name)
     source = discord.FFmpegOpusAudio(file_name)
     message.guild.voice_client.play(source)
