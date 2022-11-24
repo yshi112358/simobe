@@ -11,7 +11,7 @@ import traceback
 
 prefix = os.environ["prefix"]
 
-client = commands.Bot(command_prefix=prefix, intents=discord.Intents.all())
+client = commands.Bot(command_prefix=prefix)
 
 ctx_join = None
 
@@ -128,10 +128,12 @@ async def a(ctx, arg="", *member_count):
         for member in bot_vc.members:
             bot_message += str(member)+"  :"+str(n)+"\n"
             n += 1
-        death_list = []
-        death_list_num = [False]*n
+        death_list=[]
+        death_list_num=[False]*n
         embed = discord.Embed(title="ゲームスタート", description=bot_message)
         await ctx.channel.send(embed=embed)
+
+
 
     elif arg == "m" or arg == "mute":
         # ミュート処理(オフからオン)
@@ -146,10 +148,12 @@ async def a(ctx, arg="", *member_count):
         embed = discord.Embed(title="ミュート", description=bot_message)
         await ctx.channel.send(embed=embed)
 
+
+
     elif arg == "d" or arg == "die" or arg == "unmute" or arg == "u":
         for member in member_count:
-            death_list += member
-            death_list_num += int(member)
+            death_list+=member
+            death_list_num+=int(member)
 
         # ミュート処理(オンからオフ)
         for member in bot_vc.members:
@@ -162,7 +166,7 @@ async def a(ctx, arg="", *member_count):
         embed = discord.Embed(title="ミュート", description=bot_message)
         await ctx.channel.send(embed=embed)
 
-        # 生き残り
+        #生き残り
         n = 0
         bot_message = ""
         for member in member_list:
@@ -170,14 +174,16 @@ async def a(ctx, arg="", *member_count):
                 bot_message += str(member)+"  :"+str(n)+"\n"
             n += 1
         embed = discord.Embed(title="生き残り", description=bot_message)
-        await ctx.channel.send(embed=embed)
+        await ctx.channel.send(embed=embed)        
+        
+
 
     elif arg == "ban":
         for member in member_count:
-            death_list += member
-            death_list_num += int(member)
-
-        # 生き残り
+            death_list+=member
+            death_list_num+=int(member)
+        
+        #生き残り
         n = 0
         bot_message = ""
         for member in member_list:
@@ -198,6 +204,8 @@ async def a(ctx, arg="", *member_count):
         bot_message = "ミュートをオンにしました。"
         embed = discord.Embed(title="ミュート", description=bot_message)
         await ctx.channel.send(embed=embed)
+        
+
 
     elif arg == "end":
         # ミュート処理
@@ -208,6 +216,8 @@ async def a(ctx, arg="", *member_count):
         bot_message = "ミュートをオフにしました。"
         embed = discord.Embed(title="ミュート", description=bot_message)
         await ctx.channel.send(embed=embed)
+
+
 
     else:
         bot_message = "Among Usモードへようこそ！\n`"\
